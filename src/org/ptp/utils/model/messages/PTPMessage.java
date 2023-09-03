@@ -1,26 +1,27 @@
 package org.ptp.utils.model.messages;
 
+import org.ptp.utils.model.SensorData;
 
 public class PTPMessage extends PTPMessageHeader{
 	
 
-	private Object data;
+	private SensorData data;
 
 	public PTPMessage() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PTPMessage(PTPMessageTypes type,Object data) {
+	public PTPMessage(PTPMessageTypes type,SensorData data) {
 		super(type);
 		this.setData(data);
 	
 	}
 
-	public Object getData() {
+	public SensorData getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(SensorData data) {
 		this.data = data;
 	}
 

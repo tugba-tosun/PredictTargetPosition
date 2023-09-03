@@ -14,8 +14,7 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Sensor Started..");
-		
+			
 		ControlCenterManager ccm = new ControlCenterManager();
 		
 		ControlCenterFrame ccf = new ControlCenterFrame(ccm);

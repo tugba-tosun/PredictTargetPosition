@@ -3,6 +3,9 @@ package org.ptp.sensor.business;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import org.ptp.utils.model.AppConstants;
+import org.ptp.utils.model.IProducer;
+import org.ptp.utils.model.KafkaProducerService;
 import org.ptp.utils.model.messages.PTPMessage;
 
 
@@ -12,6 +15,8 @@ public class SensorDataService<T> implements Runnable{
 	private static final int SLEEP_DURATION = 1000;
 	
 	private static final int MAX_DATA_READ_COUNT = 1000;
+	
+	private IProducer producer = new KafkaProducerService(AppConstants.TOPIC_NAME);
 	
 	
 	private BlockingQueue<T> messages = new LinkedBlockingDeque<>();
@@ -31,7 +36,16 @@ public class SensorDataService<T> implements Runnable{
 			
 			while(readCount < MAX_DATA_READ_COUNT &&  !messages.isEmpty()) {
 				
-				System.out.println("KAFKA MSG" + messages.poll().toString());
+				T msg = messages.poll();
+				
+				
+				if(msg !=null)
+				{
+					producer.produce("Predict-target", msg);
+				}
+				
+				
+				
 			}
 			
 			readCount = 0;

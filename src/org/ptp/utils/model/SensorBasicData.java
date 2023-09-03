@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class SensorBasicData{
 	
-	private LocalDateTime time = LocalDateTime.now();
+	private String time = LocalDateTime.now().toString();
 	
 	private UUID id;
 	
@@ -14,7 +14,7 @@ public class SensorBasicData{
 
 	public SensorBasicData(UUID id, PhysicalEntity phyEnt) {
 		this();
-		time = LocalDateTime.now();
+		time = LocalDateTime.now().toString();
 		this.id = id;
 		this.setPhysicalEntity(phyEnt);
 	}
@@ -39,11 +39,11 @@ public class SensorBasicData{
 		this.physicalEntity = physicalEntity;
 	}
 
-	public LocalDateTime getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(LocalDateTime time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

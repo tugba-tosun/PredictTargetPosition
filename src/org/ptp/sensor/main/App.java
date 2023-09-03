@@ -11,8 +11,7 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Sensor Started..");
-		
+	
 		SensorManager sm = new SensorManager();
 		
 		new SensorJFrame(sm).setVisible(true);

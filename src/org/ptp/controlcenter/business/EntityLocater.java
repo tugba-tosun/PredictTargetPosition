@@ -20,28 +20,21 @@ public class EntityLocater {
 	private HashMap<UUID, SensorData> sensorData = new LinkedHashMap<>();
 
 	public void put(SensorData data) {
-		
-		System.out.println("IN data :" + data.getTime().toString());
-		
+				
 		sensorData.put(data.getId(), data);
-		
-		System.out.println("Now : "+ LocalDateTime.now());
 		
 		if(sensorData.size() > 0) {
 			SensorData sd = (SensorData)sensorData.values().toArray()[0];
-			System.out.println("Sensor : "+ sd.getId().toString() + " "+sd.getTime().toString());
 			LocalDateTime minusDate = LocalDateTime.now();
 			minusDate = minusDate.minusSeconds(10);
-			
-			System.out.println("Now minus 10: "+minusDate.toString());
+		
 			
 		}
 		
 		// Delete old data
 		// if current time minus DATA_EXPIRE_DURATION_SECONDS is less than sensor data time, sensor data is stale, 
-		sensorData.entrySet().removeIf(entry -> entry.getValue().getTime().compareTo(LocalDateTime.now().minusSeconds(DATA_EXPIRE_DURATION_SECONDS))< 0 );
+		sensorData.entrySet().removeIf(entry ->  LocalDateTime.parse(entry.getValue().getTime()).compareTo(LocalDateTime.now().minusSeconds(DATA_EXPIRE_DURATION_SECONDS))< 0 );
 		
-		System.out.println("Size: "+sensorData.size());
 		
 			
 	}

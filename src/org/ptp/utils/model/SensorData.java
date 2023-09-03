@@ -6,6 +6,10 @@ import java.util.UUID;
 public class SensorData extends SensorLocation{
 	
 	private double bearings;
+	
+	public SensorData() {
+		super();
+	}
 
 
 	public SensorData(UUID id, PhysicalEntity phyEntity,double bearings) {
