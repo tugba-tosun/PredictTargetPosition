@@ -1,5 +1,6 @@
 package org.ptp.sensor.business;
 
+import org.ptp.utils.model.PhysicalEntity;
 import org.ptp.utils.model.SensorData;
 import org.ptp.utils.model.messages.PTPMessage;
 import org.ptp.utils.model.messages.PTPMessageTypes;
@@ -30,7 +31,7 @@ public class SensorEngine implements Runnable{
 			if(sensorManager.getSensor().isActive()) {
 				try {
 					sensorManager.getSenorDataService().put(new PTPMessage(PTPMessageTypes.DATA, new SensorData(sensorManager.getSensor().getId(), 
-																													sensorManager.getSensor().getLocation(), 
+																													new PhysicalEntity(sensorManager.getSensor().getLocation()), 
 																													sensorManager.getSensor().getBearings())));
 					
 				} catch (InterruptedException e) {

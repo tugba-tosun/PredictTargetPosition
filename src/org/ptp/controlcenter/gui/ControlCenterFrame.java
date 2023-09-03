@@ -5,14 +5,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.ptp.controlcenter.business.ControlCenterManager;
+import org.ptp.sensor.business.SensorManager;
+import org.ptp.utils.model.PhysicalEntity;
+import org.ptp.utils.model.SensorData;
+
 import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.Dimension;
 
 public class ControlCenterFrame extends JFrame {
 
 	private JPanel contentPane;
+	
+	private ControlCenterManager manager;
+	
+	
+	private JTextArea infoTextArea;
 
 	/**
 	 * Launch the application.
@@ -28,6 +42,15 @@ public class ControlCenterFrame extends JFrame {
 				}
 			}
 		});
+	}
+	
+	public ControlCenterFrame(ControlCenterManager manager) {
+		
+		this();
+		
+		this.manager = manager;
+		
+		this.setTitle("Control Center");
 	}
 
 	/**
@@ -54,10 +77,44 @@ public class ControlCenterFrame extends JFrame {
 		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JTextArea infoTextArea = new JTextArea();
+		infoTextArea = new JTextArea();
 		bottomPanel.add(infoTextArea);
 		infoTextArea.setPreferredSize(new Dimension(5, 100));
 		infoTextArea.setMinimumSize(new Dimension(5, 100));
 	}
+	
+	public void updateEntityLocations(ArrayList<SensorData> sensors, PhysicalEntity targetEntity) {
+		
+		// Update Coordinate System
+		
+		// Update Console
+		String output = "";
+		
+		for(SensorData sData : sensors)
+			output += sData.getTime().toString()+ " "+"ID : "+sData.getId()+" Location : X: "+ sData.getPhysicalEntity().getLocation().getX()+
+			" Y:"+sData.getPhysicalEntity().getLocation().getY()
+			+ " Bearings : "+sData.getBearings()+"\n";
+		/*
+		SensorData sData = sensors.get(0);
+		output += sData.getTime().toString()+ " "+"ID : "+sData.getId()+" Location : "+ sData.getPhysicalEntity().getLocation().toString()
+				+ " Bearings : "+sData.getBearings()+"\n";
+		
+		sData = sensors.get(1);
+		output += sData.getTime().toString()+ " "+"ID : "+sData.getId()+" Location : "+ sData.getPhysicalEntity().getLocation().toString()
+				+ " Bearings : "+sData.getBearings()+"\n";
+		*/
+		if(targetEntity.getLocation() != null )
+			output +="Target Location : X: "+ targetEntity.getLocation().getX()+" Y: "+targetEntity.getLocation().getY();
+		
+		putConsoleMessage(output);
+		
+	}
+	
+	private void putConsoleMessage(String message) {
+		infoTextArea.setText(message);
+	}
+
+
+	
 
 }

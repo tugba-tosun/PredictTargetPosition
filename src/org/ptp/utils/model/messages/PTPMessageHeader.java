@@ -1,10 +1,10 @@
 package org.ptp.utils.model.messages;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class PTPMessageHeader {
 	
-	private LocalTime time;
+	private LocalDateTime time;
 	
 	private PTPMessageTypes type;
 
@@ -12,23 +12,31 @@ public class PTPMessageHeader {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PTPMessageHeader(LocalTime time, PTPMessageTypes type) {
+	public PTPMessageHeader(LocalDateTime time, PTPMessageTypes type) {
 	
 		this.time = time;
-		this.type = type;
+		this.setType(type);
 	}
 	
 	public PTPMessageHeader( PTPMessageTypes type) {
 		
-		this(LocalTime.now(),type);
+		this(LocalDateTime.now(),type);
 	}
 
-	public LocalTime getTime() {
+	public LocalDateTime getTime() {
 		return time;
 	}
 
-	public void setTime(LocalTime time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
+	}
+
+	public PTPMessageTypes getType() {
+		return type;
+	}
+
+	public void setType(PTPMessageTypes type) {
+		this.type = type;
 	}
 
 }

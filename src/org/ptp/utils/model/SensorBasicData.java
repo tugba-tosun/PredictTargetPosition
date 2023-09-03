@@ -1,18 +1,22 @@
 package org.ptp.utils.model;
 
 import java.awt.Point;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class SensorBasicData{
 	
+	private LocalDateTime time = LocalDateTime.now();
+	
 	private UUID id;
 	
-	private Point location;
+	private PhysicalEntity physicalEntity;
 
-	public SensorBasicData(UUID id, Point location) {
-		
+	public SensorBasicData(UUID id, PhysicalEntity phyEnt) {
+		this();
+		time = LocalDateTime.now();
 		this.id = id;
-		this.location = location;
+		this.setPhysicalEntity(phyEnt);
 	}
 
 	public SensorBasicData() {
@@ -27,12 +31,21 @@ public class SensorBasicData{
 		this.id = id;
 	}
 
-	public Point getLocation() {
-		return location;
+	public PhysicalEntity getPhysicalEntity() {
+		return physicalEntity;
 	}
 
-	public void setLocation(Point location) {
-		this.location = location;
+	public void setPhysicalEntity(PhysicalEntity physicalEntity) {
+		this.physicalEntity = physicalEntity;
 	}
+
+	public LocalDateTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalDateTime time) {
+		this.time = time;
+	}
+
 
 }

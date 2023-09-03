@@ -1,6 +1,5 @@
 package org.ptp.utils.model.messages;
 
-import java.time.LocalTime;
 
 public class PTPMessage extends PTPMessageHeader{
 	
@@ -13,8 +12,16 @@ public class PTPMessage extends PTPMessageHeader{
 
 	public PTPMessage(PTPMessageTypes type,Object data) {
 		super(type);
-		this.data = data;
+		this.setData(data);
 	
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

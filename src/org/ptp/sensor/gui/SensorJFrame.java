@@ -125,7 +125,7 @@ public class SensorJFrame extends JFrame {
 						throw new Exception();
 					
 				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "Y Location must be >= -500 and <=500");
+					JOptionPane.showMessageDialog(null, "Y Location must be >= -500 and <= 500");
 					return;
 				}
 				

@@ -3,25 +3,23 @@ package org.ptp.sensor.model;
 import java.awt.Point;
 import java.util.UUID;
 
-public class Sensor {
+import org.ptp.utils.model.PhysicalEntity;
+
+public class Sensor extends PhysicalEntity{
 	
 	public Sensor(UUID id, Point location, double bearings) {
-		super();
+		super(location);
 		this.id = id;
-		this.location = location;
 		this.bearings = bearings;
 	}
 	
 	public Sensor(Point location, double bearings) {
-		super();
+		super(location);
 	
-		this.location = location;
 		this.bearings = bearings;
 	}
 
 	private UUID id = UUID.randomUUID();
-	
-	private Point location;
 	
 	private double bearings;
 	
@@ -39,13 +37,6 @@ public class Sensor {
 		this.id = id;
 	}
 
-	public Point getLocation() {
-		return location;
-	}
-
-	public void setLocation(Point location) {
-		this.location = location;
-	}
 
 	public double getBearings() {
 		return bearings;

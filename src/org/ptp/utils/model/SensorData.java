@@ -8,11 +8,16 @@ public class SensorData extends SensorLocation{
 	private double bearings;
 
 
-	public SensorData(UUID id, Point location,double bearings) {
-		super(id, location);
+	public SensorData(UUID id, PhysicalEntity phyEntity,double bearings) {
+		super(id, phyEntity);
 		this.bearings = bearings;
 	}
 
+	public SensorData( PhysicalEntity phyEntity,double bearings) {
+		this(UUID.randomUUID(), phyEntity,bearings);
+	
+	}
+	
 	public double getBearings() {
 		return bearings;
 	}
@@ -20,5 +25,7 @@ public class SensorData extends SensorLocation{
 	public void setBearings(double bearings) {
 		this.bearings = bearings;
 	}
+	
+	
 
 }
