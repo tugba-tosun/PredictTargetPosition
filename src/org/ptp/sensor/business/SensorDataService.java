@@ -12,7 +12,7 @@ import org.ptp.utils.model.messages.PTPMessage;
 
 public class SensorDataService<T> implements Runnable{
 	
-	private static final int SLEEP_DURATION = 1000;
+	private static final int SLEEP_DURATION = 100;
 	
 	private static final int MAX_DATA_READ_COUNT = 1000;
 	

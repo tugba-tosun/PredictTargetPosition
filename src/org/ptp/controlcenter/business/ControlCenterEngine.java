@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ControlCenterEngine implements Runnable{
 
-	private static final int EXEC_PERIOD_MS = 1000;
+	private static final int EXEC_PERIOD_MS = 200;
 
 	private static final int MAX_READ_COUNT = 1000;
 

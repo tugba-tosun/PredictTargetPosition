@@ -36,6 +36,7 @@ public class CartesianPlotter extends JPanel {
 	    
 	    protected void paintComponent(Graphics g){
 	        super.paintComponent(g);
+	       
 	        
 	        Graphics2D g1=(Graphics2D)g;
 	        g1.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);

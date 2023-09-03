@@ -16,7 +16,7 @@ public class ControlCenterManager implements IExecutable{
 	private PhysicalEntity target = new PhysicalEntity();
 
 
-	private ContolCenterController controller = new ContolCenterController(this);
+	private ControlCenterController controller = new ControlCenterController(this);
 
 	private ControlCenterService<PTPMessage> dataService = new ControlCenterService<>(this);
 
@@ -43,13 +43,13 @@ public class ControlCenterManager implements IExecutable{
 	}
 
 
-	public ContolCenterController getController() {
+	public ControlCenterController getController() {
 		return controller;
 	}
 
 
 
-	public void setController(ContolCenterController controller) {
+	public void setController(ControlCenterController controller) {
 		this.controller = controller;
 	}
 

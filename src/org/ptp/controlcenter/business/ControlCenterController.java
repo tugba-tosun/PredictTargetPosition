@@ -9,13 +9,13 @@ import org.ptp.sensor.model.Sensor;
 import org.ptp.utils.model.PhysicalEntity;
 import org.ptp.utils.model.SensorData;
 
-public class ContolCenterController {
+public class ControlCenterController {
 	
 	private ControlCenterManager manager;
 	
 	private ControlCenterFrame view;
 
-	public ContolCenterController(ControlCenterManager cm) {
+	public ControlCenterController(ControlCenterManager cm) {
 		this.manager = cm;
 
 	}
