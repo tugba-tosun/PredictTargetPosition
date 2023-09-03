@@ -68,7 +68,7 @@ public class ControlCenterService<T> implements Runnable{
 			PTPMessage ptp = (PTPMessage)messages.peek();
 			if(ptp != null) {
 				SensorData sdm = (SensorData)ptp.getData();
-				System.out.println(">>"+sdm.getTime().toString());
+				
 			}
 			
 			readCount = 0;

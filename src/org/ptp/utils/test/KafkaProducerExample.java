@@ -18,7 +18,6 @@ public class KafkaProducerExample {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         for (int i = 0; i < 100; i++) {
         	
-        	System.out.println("Test "+i);
             producer.send(
                   new ProducerRecord<>("test",
                        Integer.toString(i), Integer.toString(i)));

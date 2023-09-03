@@ -9,8 +9,7 @@ import javax.swing.border.EmptyBorder;
 import org.ptp.sensor.business.SensorDataController;
 import org.ptp.sensor.business.SensorManager;
 import org.ptp.sensor.model.Sensor;
-
-
+import org.ptp.utils.gui.CartesianPlotter;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -23,7 +22,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
 public class SensorJFrame extends JFrame {
 
@@ -33,6 +34,8 @@ public class SensorJFrame extends JFrame {
 	private JTextField bearingTextField;
 	
 	private SensorManager sensorManager;
+	
+	private CartesianPlotter plotter = new CartesianPlotter();
 	
 
 	/**
@@ -66,7 +69,7 @@ public class SensorJFrame extends JFrame {
 	 */
 	public SensorJFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 757, 134);
+		setBounds(100, 100, 782, 579);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -141,6 +144,11 @@ public class SensorJFrame extends JFrame {
 					return;
 				}
 				
+				ArrayList<Point>points = new ArrayList();
+				points.add(new Point(xLocation,yLocation));
+				plotter.setSensorPoints(points);
+				
+				plotter.repaint();
 				sensorManager.getSensorDataController().initSensor(new Point(xLocation,yLocation), bearings);
 	
 				
@@ -151,6 +159,9 @@ public class SensorJFrame extends JFrame {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.BLACK);
 		contentPane.add(mainPanel, BorderLayout.CENTER);
+		mainPanel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		mainPanel.add(plotter);
 	}
 
 }

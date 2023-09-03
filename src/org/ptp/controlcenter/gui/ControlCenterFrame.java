@@ -8,13 +8,16 @@ import javax.swing.border.EmptyBorder;
 
 import org.ptp.controlcenter.business.ControlCenterManager;
 import org.ptp.sensor.business.SensorManager;
+import org.ptp.utils.gui.CartesianPlotter;
 import org.ptp.utils.model.PhysicalEntity;
 import org.ptp.utils.model.SensorData;
 
 import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.Dimension;
@@ -24,6 +27,8 @@ public class ControlCenterFrame extends JFrame {
 	private JPanel contentPane;
 	
 	private ControlCenterManager manager;
+	
+	private CartesianPlotter cartesianPlotter = new CartesianPlotter();
 	
 	
 	private JTextArea infoTextArea;
@@ -58,7 +63,7 @@ public class ControlCenterFrame extends JFrame {
 	 */
 	public ControlCenterFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 778, 566);
+		setBounds(100, 100, 986, 691);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -81,6 +86,8 @@ public class ControlCenterFrame extends JFrame {
 		bottomPanel.add(infoTextArea);
 		infoTextArea.setPreferredSize(new Dimension(5, 100));
 		infoTextArea.setMinimumSize(new Dimension(5, 100));
+		
+		midPanel.add(cartesianPlotter);
 	}
 	
 	public void updateEntityLocations(ArrayList<SensorData> sensors, PhysicalEntity targetEntity) {
@@ -94,19 +101,24 @@ public class ControlCenterFrame extends JFrame {
 			output += sData.getTime().toString()+ " "+"ID : "+sData.getId()+" Location : X: "+ sData.getPhysicalEntity().getLocation().getX()+
 			" Y:"+sData.getPhysicalEntity().getLocation().getY()
 			+ " Bearings : "+sData.getBearings()+"\n";
-		/*
-		SensorData sData = sensors.get(0);
-		output += sData.getTime().toString()+ " "+"ID : "+sData.getId()+" Location : "+ sData.getPhysicalEntity().getLocation().toString()
-				+ " Bearings : "+sData.getBearings()+"\n";
-		
-		sData = sensors.get(1);
-		output += sData.getTime().toString()+ " "+"ID : "+sData.getId()+" Location : "+ sData.getPhysicalEntity().getLocation().toString()
-				+ " Bearings : "+sData.getBearings()+"\n";
-		*/
+
 		if(targetEntity.getLocation() != null )
 			output +="Target Location : X: "+ targetEntity.getLocation().getX()+" Y: "+targetEntity.getLocation().getY();
 		
 		putConsoleMessage(output);
+		
+		ArrayList<Point> sensorPoints = new ArrayList<Point>();
+		
+		for(SensorData sensData : sensors)
+		{
+			sensorPoints.add(sensData.getPhysicalEntity().getLocation());
+		}
+		
+		cartesianPlotter.setSensorPoints(sensorPoints);
+		cartesianPlotter.setTargetPoint(targetEntity.getLocation());
+		cartesianPlotter.repaint();
+		
+		
 		
 	}
 	
