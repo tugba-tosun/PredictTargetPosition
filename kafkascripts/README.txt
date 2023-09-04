@@ -1,0 +1,1 @@
+Scriptler KAFKA kütüphanesinin indirildiği dizine göre düzenlenmelidir.
